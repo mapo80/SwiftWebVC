@@ -23,12 +23,12 @@ public class SwiftModalWebVC: UINavigationController {
     public weak var webView: WKWebView? = nil
     
     public convenience init(urlString: String, webViewDelegate: SwiftWebVCDelegate?) {
-        self.webViewDelegate = webViewDelegate
         var urlString = urlString
         if !urlString.hasPrefix("https://") && !urlString.hasPrefix("http://") {
             urlString = "https://"+urlString
         }
         self.init(pageURL: URL(string: urlString)!)
+        self.webViewDelegate = webViewDelegate
     }
     
     public convenience init(urlString: String, theme: SwiftModalWebVCTheme, dismissButtonStyle: SwiftModalWebVCDismissButtonStyle) {
