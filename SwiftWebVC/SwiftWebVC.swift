@@ -10,7 +10,7 @@ import WebKit
 
 public protocol SwiftWebVCDelegate: class {
     func didStartLoading()
-    func didFinishLoading(success: Bool)
+    func didFinishLoading(webView: WKWebView, success: Bool)
 }
 
 public class SwiftWebVC: UIViewController {
@@ -292,7 +292,7 @@ extension SwiftWebVC: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.delegate?.didFinishLoading(success: true)
+        self.delegate?.didFinishLoading(webView, success: true)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         webView.evaluateJavaScript("document.title", completionHandler: {(response, error) in
