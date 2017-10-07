@@ -44,7 +44,7 @@ public class SwiftModalWebVC: UINavigationController {
     
     public init(request: URLRequest, theme: SwiftModalWebVCTheme = .lightBlue, dismissButtonStyle: SwiftModalWebVCDismissButtonStyle = .arrow) {
         let webViewController = SwiftWebVC(aRequest: request)
-        webView = webViewController.delegate.webView
+        webView = webViewController.webView
         webViewController.delegate = webViewDelegate
         
         webViewController.storedStatusColor = UINavigationBar.appearance().barStyle
