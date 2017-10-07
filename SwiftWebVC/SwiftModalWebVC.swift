@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 public class SwiftModalWebVC: UINavigationController {
     
@@ -18,6 +19,8 @@ public class SwiftModalWebVC: UINavigationController {
     }
     
     public weak var webViewDelegate: UIWebViewDelegate? = nil
+    
+    public weak var webView: WKWebView? = nil
     
     public convenience init(urlString: String) {
         var urlString = urlString
@@ -41,6 +44,7 @@ public class SwiftModalWebVC: UINavigationController {
     
     public init(request: URLRequest, theme: SwiftModalWebVCTheme = .lightBlue, dismissButtonStyle: SwiftModalWebVCDismissButtonStyle = .arrow) {
         let webViewController = SwiftWebVC(aRequest: request)
+        webView = webViewController.webView
         webViewController.storedStatusColor = UINavigationBar.appearance().barStyle
         
         let dismissButtonImageName = (dismissButtonStyle == .arrow) ? "SwiftWebVCDismiss" : "SwiftWebVCDismissAlt"
