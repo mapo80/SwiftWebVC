@@ -292,7 +292,7 @@ extension SwiftWebVC: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.delegate?.didFinishLoading(webView, success: true)
+        self.delegate?.didFinishLoading(webView: webView, success: true)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         webView.evaluateJavaScript("document.title", completionHandler: {(response, error) in
@@ -304,7 +304,7 @@ extension SwiftWebVC: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.delegate?.didFinishLoading(success: false)
+        self.delegate?.didFinishLoading(webView: webView, success: false)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         updateToolbarItems()
     }
