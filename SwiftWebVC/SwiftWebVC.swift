@@ -66,7 +66,7 @@ public class SwiftWebVC: UIViewController {
     }()
     
     
-    lazy var webView: WKWebView = {
+    public lazy var webView: WKWebView = {
         var tempWebView = WKWebView(frame: UIScreen.main.bounds)
         tempWebView.uiDelegate = self
         tempWebView.navigationDelegate = self
