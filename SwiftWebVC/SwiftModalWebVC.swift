@@ -18,7 +18,7 @@ public class SwiftModalWebVC: UINavigationController {
         case arrow, cross
     }
     
-    public weak var webViewDelegate: UIWebViewDelegate? = nil
+    public weak var webViewDelegate: SwiftWebVCDelegate? = nil
     
     public weak var webView: WKWebView? = nil
     
@@ -44,7 +44,9 @@ public class SwiftModalWebVC: UINavigationController {
     
     public init(request: URLRequest, theme: SwiftModalWebVCTheme = .lightBlue, dismissButtonStyle: SwiftModalWebVCDismissButtonStyle = .arrow) {
         let webViewController = SwiftWebVC(aRequest: request)
-        webView = webViewController.webView
+        webView = webViewController.delegate.webView
+        webViewController.delegate = webViewDelegate
+        
         webViewController.storedStatusColor = UINavigationBar.appearance().barStyle
         
         let dismissButtonImageName = (dismissButtonStyle == .arrow) ? "SwiftWebVCDismiss" : "SwiftWebVCDismissAlt"
