@@ -17,7 +17,7 @@ public class SwiftModalWebVC: UINavigationController {
         case arrow, cross
     }
     
-    weak var webViewDelegate: UIWebViewDelegate? = nil
+    public weak var webViewDelegate: UIWebViewDelegate? = nil
     
     public convenience init(urlString: String) {
         var urlString = urlString
