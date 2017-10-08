@@ -332,7 +332,10 @@ extension SwiftWebVC: WKNavigationDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         updateToolbarItems()
     }
-    
+    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+        let cred = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+        completionHandler(.useCredential, cred)
+    }
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         let url = navigationAction.request.url
