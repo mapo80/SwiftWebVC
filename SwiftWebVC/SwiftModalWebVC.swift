@@ -26,16 +26,15 @@ public class SwiftModalWebVC: UINavigationController {
         }
         
         //need to use MutableRequest to set HTTPMethod to Post.
-        var url = NSURL(string: urlString)
-        var request = NSMutableURLRequest(URL: url!)
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(url: url as! URL)
         
         if let body = bodyString {
-            request.HTTPMethod = "POST"
-            var bodyData: String = bodyString
-            request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding)
+            request.httpMethod = "POST"
+            request.httpBody = body.data(using: String.Encoding.utf8)
         }
         
-        self.init(request: request, webViewDelegate: webViewDelegate)
+        self.init(request: request as URLRequest, webViewDelegate: webViewDelegate)
     }
     public init(request: URLRequest, webViewDelegate: SwiftWebVCDelegate?, theme: SwiftModalWebVCTheme = .lightBlue, dismissButtonStyle: SwiftModalWebVCDismissButtonStyle = .arrow) {
         let webViewController = SwiftWebVC(request: request, delegate: webViewDelegate)
